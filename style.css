@@ -29,7 +29,10 @@ body{
     
 }
 .equal{
-    flex: 2;
+    flex: 1.2;
+}
+.clear{
+    flex: 1 0.8
 }
 .rows{
     width: 24%;
