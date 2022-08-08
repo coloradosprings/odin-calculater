@@ -1,0 +1,55 @@
+
+*{
+    display: flex;
+    flex-flow: column;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.calculater {
+    height: 75%;
+    width: 40%;
+}
+.display{
+    justify-content: center;
+    height: 25%;
+    padding: 4px white;
+  
+}
+.buttons{
+    flex: 1 1 auto;
+    flex-direction:row;
+    gap:15px;
+    justify-content: space-between;
+   
+    
+}
+.equal{
+    flex: 2;
+}
+.rows{
+    width: 24%;
+}
+button{
+    flex: 1 1 auto;
+    display: inline-block;
+    vertical-align: middle;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   
+
+}
+.screen {
+    border: 1px;
+    border-style:solid;
+    border-color: black;
+    height: 90%;
+    width: 96%;
+    background-color: #dfdfdf;
+    padding: 10px;
+}
+
+
