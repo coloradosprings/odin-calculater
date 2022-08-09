@@ -6,19 +6,33 @@ const numbers = document.querySelectorAll('.number')
 const display = document.querySelector('.screen')
 const back = document.querySelector('.back')
 const negative = document.querySelector('.negative')
+const screen = document.querySelector('.screen')
+const point = document.querySelector('.point')
+
+screen.style.fontSize = `${screen.offsetHeight*0.36}px`
 
 let operation = []
 display.textContent = operation
 
+point.addEventListener('click', comma)
 negative.addEventListener('click',makeNegativ)
 equal.addEventListener('click',prepOperation)
 back.addEventListener('click',backspace)
 operators.forEach(operator => operator.addEventListener('click',addOperator))
 numbers.forEach(number => number.addEventListener('click',addNumber))
-clear.addEventListener('click',()=> {display.textContent = '';operation=[]})
+clear.addEventListener('click',()=> {display.textContent = '';operation=[];occ()})
 
+function comma(){
+    if(Number.isInteger(+operation[operation.length-1]) && operation[operation.length-1] != ' '){
+        operation += "."
+    }
+    else{
+    }
+    display.textContent = operation  
+
+}
 function backspace(){
-
+    occ()
     if(operation[operation.length-1] == ' '){
         operation = operation.slice(0,operation.length-3)
     }
@@ -49,8 +63,8 @@ function prepOperation(){
     }
     else{
         fullarray = operation.split(" ")
-        numberarray = fullarray.filter(item =>(Number.isInteger(+(item)))).map(x => +(x))
-        operatorarray = fullarray.filter(item =>!(Number.isInteger(+(item))))
+        numberarray = fullarray.filter(item =>(Number.isInteger(+item*(10**(item.length-1))))).map(x => +(x))
+        operatorarray = fullarray.filter(item =>!(Number.isInteger(+item*(10**(item.length-1)))))
             if(operation[1] == '-'){
             operatorarray.splice(0,1)
             numberarray.splice(0,1)
@@ -116,6 +130,17 @@ function calcOperation(operatorarray, numberarray){
         operatorarray.splice(index,1)}}   
 
     else{}
-    operation = [`${numberarray}`]
+    operation = [`${Math.round((numberarray)*1000)/1000}`]
     display.textContent = operation
     }
+
+let content = ''
+
+
+occ()
+function occ(){
+    setTimeout(() =>  {if(!(operation=='')){}else{content = '|';display.textContent = content;occ2()}},500) 
+}
+function occ2(){
+    setTimeout(() =>  {if(!(operation=='')){}else{content = ' ';display.textContent = content;occ()}},500)
+}
